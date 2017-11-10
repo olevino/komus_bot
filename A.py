@@ -5,7 +5,7 @@ import requests
 import sqlite3
 from copy import copy
 
-TOKEN = '459597497:AAF3VonRPApzgTsEJIgrFLf6xOOU-U5K31Y'
+TOKEN = '459597566:AAF3VonRFQSzgTsEJIgrFLf6xOOU-U5QWEY'
 bot = telebot.TeleBot(TOKEN)
 
 
@@ -60,7 +60,7 @@ for item in results:
 conn.close()
 
 
-AdminId = 262690989
+AdminId = 262432234
 
 @bot.message_handler(['gen_invite'])
 def get_invite(message):
@@ -125,8 +125,8 @@ def delete_markup(id):
 def opt(art):  # принимает артикул. Возвращает цену и количество.
     q = requests.Session()
     o = q.post('http://komus-opt.ru/auth/?login=yes&backurl=/',
-               {'auth_ch': 1, 'AUTH_FORM': 'Y', 'TYPE': 'AUTH', 'USER_LOGIN': 'SD_333@bk.ru',
-                'USER_PASSWORD': 'sVUtWD6h', 'Login': 'Войти'})
+               {'auth_ch': 1, 'AUTH_FORM': 'Y', 'TYPE': 'AUTH', 'USER_LOGIN': 'QWEQWE@bk.ru',
+                'USER_PASSWORD': 'QWEWQE', 'Login': 'Войти'})
     response = q.get('http://komus-opt.ru/search/?q=' + art)
     p = response.text.find('var dataToGetID = [') + 19
     e = 0
