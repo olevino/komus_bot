@@ -82,7 +82,7 @@ def get_invite(message):
 
 def update_name(message):
     name = ''
-    if str(message.from_user.username) == '':
+    if message.from_user.username is None:
         name = str(message.from_user.first_name) + ' ' + str(message.from_user.last_name)
     else:
         name = str(message.from_user.username)
