@@ -978,8 +978,30 @@ def broadcast(message):
     message.text = message.text[p + 10:]
     for item in list_of_clients:
         bot.send_message(item, message.text)
+        standart(message)
 
-
+@bot.message_handler(['broadcast_active'])
+def broadcast(message):
+    if (message.chat.id != AdminId):
+        bot.send_message(message.chat.id, 'У вас недостаточно прав. Забудьте об этой команде:)')
+        standart(message)
+        return
+    if (len(message.text.split()) == 1):
+        bot.send_message(message.chat.id,
+                         'Введите команду в формате "/broadcast_active ######", где вместо решеток вставьте сообщение, которое отправится всем клиентам.')
+        return
+    p = message.text.find('broadcast_active')
+    message.text = message.text[p + 17:]
+    for item in list_of_clients:
+        flag = 0
+        if(item in orders):
+            for order in orders[item]:
+                if(order[3] != 4):
+                    flag = 1
+        if(flag):
+            bot.send_message(item, message.text)
+            standart(message)
+            
 @bot.message_handler(['show_all_orders'])
 def show_all_orders(message):
     if (message.chat.id != AdminId):
