@@ -5,7 +5,7 @@ def get_users():
     conn = sqlite3.connect("Komus_BD.sqlite")
     cursor = conn.cursor()
     cursor.execute("SELECT Handle, ID, Status, Spam, Root FROM User")
-    response = list(map(cursor.fetchall()))
+    response = list(map(lambda x: x[0], cursor.fetchall()))
     conn.commit()
     conn.close()
     return response
@@ -15,7 +15,7 @@ def get_carts():
     conn = sqlite3.connect("Komus_BD.sqlite")
     cursor = conn.cursor()
     cursor.execute("SELECT UserID, Art, Amount FROM Cart")
-    response = list(map(cursor.fetchall()))
+    response = list(map(lambda x: x[0], cursor.fetchall()))
     conn.commit()
     conn.close()
     return response
@@ -25,7 +25,7 @@ def get_items():
     conn = sqlite3.connect("Komus_BD.sqlite")
     cursor = conn.cursor()
     cursor.execute("SELECT Art, OptPrice, SpecPrice, RoznPrice FROM Item")
-    response = list(map(cursor.fetchall()))
+    response = list(map(lambda x: x[0], cursor.fetchall()))
     conn.commit()
     conn.close()
     return response
@@ -35,7 +35,7 @@ def get_orders():
     conn = sqlite3.connect("Komus_BD.sqlite")
     cursor = conn.cursor()
     cursor.execute("SELECT OrderID, UserID, Type, Art, Amount FROM Order")
-    response = list(map(cursor.fetchall()))
+    response = list(map(lambda x: x[0], cursor.fetchall()))
     conn.commit()
     conn.close()
     return response
